@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up and Sign In</title>
+    <link rel="stylesheet" , href="style.css">
+    <script src="https://kit.fontawesome.com/d8121a8dcf.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="form-box">
+            <form>
+                <h1 id="title">Sign Up</h1>
+                <br><br>
+                <div class="btn-field">
+                    <button type="button" id="signupBtn">Sign Up</button>
+                    <button type="button" class="disable" id="signinBtn">Sign In</button>
+                </div>
+                <div class="input-group">
+                    <div class="input-field" id="nameField">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" , placeholder="Name", id="name_data">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" , placeholder="Email", id="email_data">
+                    </div>
+                    <div class="input-field" id="passwordField">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" , placeholder="Password", id="password_data">
+                    </div>
+                </div>
+                <p>Lost Password? <a href="#" id="forgotPassword">Click Here</a></p>
+                <br>
+
+                <div class="btn-field-submit">
+                    <button type="button" id="submitBtn">Submit</button>
+                </div>
+            </form>
+            <p id="countChange"></p>
+        </div>
+
+    </div>
+    <script>
+        let signup = document.getElementById("signupBtn");
+        let signin = document.getElementById("signinBtn");
+        let title = document.getElementById("title");
+        let name_field = document.getElementById("nameField");
+        let password_field = document.getElementById("passwordField");
+        let forget_password = document.getElementById("forgotPassword");
+        let countChange = document.getElementById("countChange");
+        let submitBtn = document.getElementById("submitBtn");
+        let name_data = document.getElementById("name_data");
+        let email_data = document.getElementById("email_data");
+        let password_data = document.getElementById("password_data");
+        let signin_signup_bool;
+        countChange.textContent = Number("0");
+        signin.onclick = function () {
+            countChange.textContent = Number(countChange.textContent) + 1;
+            signin_signup_bool = "SIGNUP";
+            name_field.style.maxHeight = "0";
+            password_field.style.maxHeight = "65px";
+            title.textContent = "Sign In";
+            signup.classList.add("disable");
+            signin.classList.remove("disable");
+        }
+
+
+        signup.onclick = function () {
+            countChange.textContent = Number(countChange.textContent) + 1;
+            signin_signup_bool = "SIGNIN";
+            password_field.style.maxHeight = "65px";
+            name_field.style.maxHeight = "60px";
+            title.textContent = "Sign Up";
+            signup.classList.remove("disable");
+            signin.classList.add("disable");
+        }
+        
+        forget_password.onclick = function(){
+            countChange.textContent = Number(countChange.textContent) + 1;
+            signin_signup_bool = "LOSTPASSWORD";
+            signup.classList.add("disable");
+            signin.classList.add("disable");
+            title.textContent = "Forget Password";
+            name_field.style.maxHeight = "0";
+            password_field.style.maxHeight = "0";
+        }
+
+        submitBtn.onclick = function(){
+            if(signin_signup_bool == "LOSTPASSWORD"){
+                countChange.textContent = "LOSTPASSWORD";
+                
+            }
+            if(signin_signup_bool == "SIGNUP"){
+                countChange.textContent = "SIGNUP";
+
+            }
+            if(signin_signup_bool == "SIGNIN"){
+                countChange.textContent = "SIGNIN";
+            }
+        }
+
+        // signin.onclick = function(){
+        //     name_field.style.maxHeight = 65px;
+        // }
+    </script>
+</body>
+
+</html>
